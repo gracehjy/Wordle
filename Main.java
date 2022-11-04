@@ -1,10 +1,12 @@
 import java.io.*;
 import java.util.Scanner;
-import java.lang.StringBuffer;
 
-class Main {
-  
-  //Generates a random word given an array of words
+
+import java.lang.StringBuffer;
+import java.io.FileReader; 
+
+class Main {    
+  //GenFilerates a random word given an array of words
   public static String randomWord(String[] listOfWords){
     int randomIndex = (int)(Math.random()*listOfWords.length);
     return (listOfWords[randomIndex]);
@@ -25,8 +27,7 @@ class Main {
     
     StringBuffer newResult = new StringBuffer(result);
     int counter = 0;
-
-    //NEED TO FIX THIS (INSERT ASTERICK NEXT TO A LETTER THAT EXISTS IN THE CHOSEN WORD BUT IS NOT IN THE CORRECT PLACE)
+    
     for(int j = 0; j < result.length(); j++){
       if(result.substring(j,j+1).equals(userGuess.substring(j,j+1))){
         for(int k = j; k < chosenWord.length(); k++){
@@ -52,12 +53,12 @@ class Main {
     }
   }
   
-  public static void runGame(){
+  public static void runGame(String wordList[]){
     Scanner in = new Scanner(System.in);
     final int NUM_OF_ROUNDS = 5;
     int guessCount = 1;
     
-    String[] listOfWords = {"which", "there", "their", "about", "would", "these", "other", "words", "could", "write", "first", "water", "after", "where", "right", "think", "three", "years", "place", "sound", "great", "again", "still", "every", "small", "found", "those", "never", "under", "might", "while", "house", "world", "below", "asked", "going", "large", "until", "along", "being", "often", "earth", "began", "since", "study", "night", "light", "above", "grate", "parts"};
+    String[] listOfWords = wordList;
 
     String chosenWord = randomWord(listOfWords);
 
@@ -81,15 +82,23 @@ class Main {
     System.out.println("Play again? (Y/N) ");
     String playAgain = in.nextLine();
     if(playAgain.equals("Y")){
-      runGame();
+      runGame(listOfWords);
     }
     else{
       System.out.println("Okay, thanks for playing!");
     }
   }
   
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception{
     System.out.println("Welcome to Wordle! Rules are simple, guess a five-letter word. If a letter is in the correct spot, it will be capitalized. If a letter is in the chosen word, but not the correct spot, an asterick will after it. Good luck, have fun, and let's start guessing: ");
-    runGame();
+    FileReader fr=new FileReader("words.txt");    
+    BufferedReader br = new BufferedReader(fr);
+      String LISTOFWORDS[] = new String[5];   
+    for(int i = 0; i < 5; i++){
+        LISTOFWORDS[i] = br.readLine();
+    }    
+         
+    fr.close();     
+    runGame(LISTOFWORDS);
   }
 }
