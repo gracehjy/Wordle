@@ -25,7 +25,8 @@ class Main {
     
     StringBuffer newResult = new StringBuffer(result);
     int counter = 0;
-    
+
+    //NEED TO FIX THIS (INSERT ASTERICK NEXT TO A LETTER THAT EXISTS IN THE CHOSEN WORD BUT IS NOT IN THE CORRECT PLACE)
     for(int j = 0; j < result.length(); j++){
       if(result.substring(j,j+1).equals(userGuess.substring(j,j+1))){
         for(int k = j; k < chosenWord.length(); k++){
