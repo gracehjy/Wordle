@@ -12,13 +12,23 @@ class Main {
     return (listOfWords[randomIndex]);
   }
 
+  public static String replaceCharacterToUpperCase(String input, char c, boolean isAllOccurance) {
+     int index = input.indexOf(c);
+     if(isAllOccurance){
+         return input.replace(input.charAt(index), Character.toUpperCase(input.charAt(index)));
+     } else{
+         return input.replaceFirst(Character.toString(input.charAt(index)), Character.toString(Character.toUpperCase(input.charAt(index))));
+     }
+}
+  
   public static void checkForCorrectChars(String userGuess, String chosenWord){
     String result = "";
 
     //Checks for words in correct spot
     for(int i = 0; i < chosenWord.length(); i++){
-      if(userGuess.substring(i,i+1).equals(chosenWord.substring(i,i+1))){
+      if(userGuess.substring(i,i+1).equals(chosenWord.substring(i,i+1).toLowerCase())){
         result = result + userGuess.substring(i,i+1).toUpperCase()+"";
+        chosenWord = replaceCharacterToUpperCase(chosenWord, chosenWord.charAt(i), false);
       }
       else{
         result = result + userGuess.substring(i,i+1)+"";
@@ -29,7 +39,7 @@ class Main {
     int counter = 0;
     
     for(int j = 0; j < result.length(); j++){
-      if(result.substring(j,j+1).equals(userGuess.substring(j,j+1))){
+      if((result.substring(j,j+1).equals(userGuess.substring(j,j+1)))){
         for(int k = 0; k < chosenWord.length(); k++){
           if(result.substring(j,j+1).equals(chosenWord.substring(k,k+1))){
             //inserts an asterick next to the letter
