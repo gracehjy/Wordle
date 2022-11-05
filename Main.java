@@ -30,10 +30,10 @@ class Main {
     
     for(int j = 0; j < result.length(); j++){
       if(result.substring(j,j+1).equals(userGuess.substring(j,j+1))){
-        for(int k = j; k < chosenWord.length(); k++){
+        for(int k = 0; k < chosenWord.length(); k++){
           if(result.substring(j,j+1).equals(chosenWord.substring(k,k+1))){
             //inserts an asterick next to the letter
-            newResult.insert(counter+1, "*");
+            newResult = newResult.insert(counter+1, "*");
             counter++;
             k = chosenWord.length();
           }
