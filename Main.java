@@ -91,10 +91,10 @@ class Main {
   
   public static void main(String[] args) throws Exception{
     System.out.println("Welcome to Wordle! Rules are simple, guess a five-letter word. If a letter is in the correct spot, it will be capitalized. If a letter is in the chosen word, but not the correct spot, an asterick will after it. Good luck, have fun, and let's start guessing: ");
-    FileReader fr=new FileReader("words.txt");    
+    FileReader fr = new FileReader("words.txt");    
     BufferedReader br = new BufferedReader(fr);
-      String LISTOFWORDS[] = new String[5];   
-    for(int i = 0; i < 5; i++){
+    String LISTOFWORDS[] = new String[5757];   
+    for(int i = 0; i < 5757; i++){
         LISTOFWORDS[i] = br.readLine();
     }    
          
