@@ -45,12 +45,13 @@ class Main {
   }
 
   //Checks to see if the guess is valid
-  public static void checkForValidGuess(String userGuess){
+  public static String checkForValidGuess(String userGuess){
     Scanner in = new Scanner(System.in);
     while(userGuess.length() != 5){
       System.out.println("Invalid Guess. Word must be 5 letters long. Try again: ");
       userGuess = in.nextLine();
     }
+    return userGuess;
   }
   
   public static void runGame(String wordList[]){
@@ -63,12 +64,12 @@ class Main {
     String chosenWord = randomWord(listOfWords);
 
     String userGuess = in.nextLine();
-    checkForValidGuess(userGuess);
+    userGuess = checkForValidGuess(userGuess);
     
     while((guessCount < NUM_OF_ROUNDS) && !(userGuess.equals(chosenWord))){
       checkForCorrectChars(userGuess, chosenWord);
       userGuess = in.nextLine();
-      checkForValidGuess(userGuess);
+      userGuess = checkForValidGuess(userGuess);
       guessCount++;
     }
 
@@ -93,12 +94,12 @@ class Main {
     System.out.println("Welcome to Wordle! Rules are simple, guess a five-letter word. If a letter is in the correct spot, it will be capitalized. If a letter is in the chosen word, but not the correct spot, an asterick will after it. Good luck, have fun, and let's start guessing: ");
     FileReader fr = new FileReader("words.txt");    
     BufferedReader br = new BufferedReader(fr);
-    String LISTOFWORDS[] = new String[5757];   
+    String listOfWords[] = new String[5757];   
     for(int i = 0; i < 5757; i++){
-        LISTOFWORDS[i] = br.readLine();
+        listOfWords[i] = br.readLine();
     }    
          
     fr.close();     
-    runGame(LISTOFWORDS);
+    runGame(listOfWords);
   }
 }
